@@ -3,7 +3,7 @@
  * Created Date: 2023-03-08 01:51:25 pm                                        *
  * Author: Mathieu Escouteloup                                                 *
  * -----                                                                       *
- * Last Modified: 2023-04-11 05:50:33 pm                                       *
+ * Last Modified: 2023-04-12 12:03:54 pm                                       *
  * Modified By: Mathieu Escouteloup                                            *
  * -----                                                                       *
  * License: See LICENSE.md                                                     *
@@ -205,7 +205,7 @@ class IssStage(p: BackParams) extends Module {
     m_s2_size(bp).io.i_sign := io.b_in(bp).ctrl.get.int.ssign(1)
     w_s2(bp) := m_s2_size(bp).io.o_val
 
-    m_s3_size(bp).io.i_val := Mux(io.b_in(bp).ctrl.get.data.s2_is_reg, io.b_rs(bp * 2 + 1).data, io.b_in(bp).ctrl.get.data.s3)
+    m_s3_size(bp).io.i_val := Mux(io.b_in(bp).ctrl.get.data.s3_is_reg, io.b_rs(bp * 2 + 1).data, io.b_in(bp).ctrl.get.data.s3)
     m_s3_size(bp).io.i_size := io.b_in(bp).ctrl.get.int.ssize(2)
     m_s3_size(bp).io.i_sign := io.b_in(bp).ctrl.get.int.ssign(2)
     w_s3(bp) := m_s3_size(bp).io.o_val

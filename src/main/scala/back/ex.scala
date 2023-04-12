@@ -3,7 +3,7 @@
  * Created Date: 2023-03-08 01:51:25 pm                                        *
  * Author: Mathieu Escouteloup                                                 *
  * -----                                                                       *
- * Last Modified: 2023-04-12 09:10:24 am                                       *
+ * Last Modified: 2023-04-12 01:13:08 pm                                       *
  * Modified By: Mathieu Escouteloup                                            *
  * -----                                                                       *
  * License: See LICENSE.md                                                     *
@@ -299,10 +299,10 @@ class ExStage(p: BackParams) extends Module {
   // ------------------------------
   val m_muldiv = if (p.useExtM) Some(for (m <- 0 until p.nMulDiv) yield {
     if (m < p.isClMul.size) {
-      val m_muldiv = Module(new MulDiv(p, p.nDataBit, (p.nExStage > 1), p.isClMul(m), 2))
+      val m_muldiv = Module(new MulDiv(p, p.nDataBit, (p.nExStage > 1), p.isClMul(m), 3))
       m_muldiv
     } else {
-      val m_muldiv = Module(new MulDiv(p, p.nDataBit, (p.nExStage > 1), false, 2))
+      val m_muldiv = Module(new MulDiv(p, p.nDataBit, (p.nExStage > 1), false, 3))
       m_muldiv
     }
   }) else None 
