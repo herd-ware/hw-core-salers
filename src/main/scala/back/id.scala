@@ -1,10 +1,10 @@
 /*
- * File: id.scala
+ * File: id.scala                                                              *
  * Created Date: 2023-03-08 01:51:25 pm                                        *
  * Author: Mathieu Escouteloup                                                 *
  * -----                                                                       *
- * Last Modified: 2023-04-06 08:39:34 pm
- * Modified By: Mathieu Escouteloup
+ * Last Modified: 2023-04-17 12:41:19 pm                                       *
+ * Modified By: Mathieu Escouteloup                                            *
  * -----                                                                       *
  * License: See LICENSE.md                                                     *
  * Copyright (c) 2023 HerdWare                                                 *
@@ -246,7 +246,7 @@ class IdStage(p: BackParams) extends Module {
     io.o_stop(h) := false.B 
 
     for (bp <- 0 until p.nBackPort) {
-      when (io.b_in(bp).valid & (h.U === io.b_in(bp).ctrl.get.hart) & ~w_lock(bp) & ~w_flush(bp)) {
+      when (io.b_in(bp).valid & (h.U === io.b_in(bp).ctrl.get.hart) & ~w_wait(bp) & ~w_lock(bp) & ~w_flush(bp)) {
         io.o_stop(h) := m_decoder(bp).io.o_trap.valid
       }
     }
