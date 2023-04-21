@@ -3,7 +3,7 @@
  * Created Date: 2023-03-08 01:51:25 pm                                        *
  * Author: Mathieu Escouteloup                                                 *
  * -----                                                                       *
- * Last Modified: 2023-04-11 06:38:16 pm                                       *
+ * Last Modified: 2023-04-21 09:44:50 am                                       *
  * Modified By: Mathieu Escouteloup                                            *
  * -----                                                                       *
  * License: See LICENSE.md                                                     *
@@ -24,7 +24,7 @@ import herd.common.mem.mb4s.{OP => LSUUOP, AMO => LSUAMO}
 import herd.core.aubrac.common._
 import herd.core.aubrac.back.{DataBus, InfoBus, IntCtrlBus, LsuCtrlBus, CsrCtrlBus, GprCtrlBus, ExtCtrlBus}
 import herd.core.aubrac.back.{INTUNIT, LSUSIZE, LSUSIGN}
-import herd.core.aubrac.back.csr.{UOP => CSRUOP, CsrBus}
+import herd.core.aubrac.back.csr.{UOP => CSRUOP, CsrDbgBus}
 import herd.core.aubrac.hfu.{CODE => DMUCODE, OP => DMUOP}
 
 
@@ -192,5 +192,5 @@ class LsuAckCtrlBus(p: BackParams) extends Bundle {
 class BackDbgBus (p: BackParams) extends Bundle {
   val last = Vec(p.nHart, UInt(p.nAddrBit.W))
   val x = Vec(p.nHart, Vec(32, UInt(p.nDataBit.W)))
-  val csr = Vec(p.nHart, new CsrBus(p.nDataBit, p.useChamp))
+  val csr = Vec(p.nHart, new CsrDbgBus(p.nDataBit, p.useChamp, p.nChampTrapLvl))
 }
